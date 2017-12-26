@@ -1,12 +1,6 @@
 <template>
 
   <div class="main_page">
-    <!-- loader copy tại codepen -->
-    <div class="loader">
-      <div class="pacman"></div>
-      <div class="dot"></div>
-    </div>
-
     <!-- nav bar -->
     <navigation></navigation>
     <!-- end nav bar -->
@@ -16,10 +10,10 @@
       <div class="cv_name">
         <div>Nguyễn Mạnh Tể</div>
       </div>
-      <h4>Junior developer and designer</h4>
+      <h4>Junior developer and full stack</h4>
       <p class="introduce">
         Tôi không sợ người luyện tập 10.000 cú đá chỉ một lần<br>Mà chỉ sợ người thực hành 1 cú đá 10.000 lần.
-        <br> Những người không biết mình đang đi trong bóng tối <br>sẽ không bao giờ tìm thấy ánh sáng.
+        <br> Nếu cho tôi 6 giờ để chặt một cái cây, <br> tôi sẽ dành 4 tiếng để mài rìu
         <!-- <p>Lý Tiểu Long</p> -->
       </p>
 
@@ -33,11 +27,22 @@
     <div class="right_clock"></div>
     <social></social>
     <div class="bottom_bar">
-      CSS3,JS,HTML5 - wkr:kutekiu
+      CSS3,JS,HTML5-<24/12/2017>~  - wkr:kutekiu
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <!-- end content page -->
     <!-- modal config -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" :style="isModalOpen? {display:'block'}:{display:'none'}">
       <!-- Modal content -->
       <div class="modal-content" id="modal_content">
         <div class="modal-header">
@@ -62,10 +67,10 @@
     components: {Navigation, Social},
     data: function () {
       return {
-        isModalOpen:false,
-        modal:null,
-        routerName:this.$router,
-        modal_content:null,
+        isModalOpen: false,
+        modal: null,
+        routerName: this.$router,
+        modal_content: null,
         mang1: ['https://i.imgur.com/CxD4ZNw.jpg'
           , 'static/img/home_bg.jpg'
           , 'https://i.imgur.com/Ks44lpb.jpg'],//
@@ -90,31 +95,62 @@
         return document.getElementsByClassName(cl)
       },
       _setAnimate: function (modal, modal_content, name, cb) {
-        modal.style.display = 'none'
+//        modal.style.display = 'none'
+        this.isModalOpen = false
         if (typeof cb === 'function') cb()
         modal_content.style['animation-name'] = name
         modal_content.style['-webkit-animation-name'] = name
+      },
+      _updateHeader: (modal, _name, _str, cb) => {
+        setTimeout(() => {
+          document.title = `${_name} - Nguyễn Mạnh Tể`
+          document.querySelector('meta[name="description"]')['content'] = `${_name} - Nguyễn Mạnh Tể`
+//          $("main_body").innerHTML = _str;
+          cb()
+//          this.$('myModal').style.display = 'block'
+        }, 50)
       }
     },
-    watch:{
-      routerName:function (newName) {
-        debugger
-        this._setAnimate(this.modal,this.modal_content,'bounceIn')
+    watch: {
+      $route: function (newName) {
+        if (newName.name === 'Index.blank') this.isModalOpen = false
+        else {
+          this._setAnimate(this.modal, this.modal_content, newName.meta.effect, () => {
+            this._updateHeader(this.modal, newName.meta.title, '', () => {
+              this.isModalOpen = true
+            })
+          })
+        }
       }
     },
     mounted: function () {
       this.modal = this.$('myModal')
-      this.modal_content = this.$("modal_content")
-      document.getElementsByTagName('body')[0].style
-        = 'background-image: url(\''
-        + this.mang1[this.rand(this.mang1.length - 1)] + '\');'
-      document.body.onmouseenter = function () {
-        setTimeout(function () {
-          document.getElementsByTagName('body')[0].style =
-            'background-image: url(\''
-            + this.mang2[this.rand(this.mang2.length - 1)] + '\');'
-        }, 1000)
-      }
+      this.modal_content = this.$('modal_content')
+      var str = window.location.href
+      var spliter = str.split('#')
+      if (spliter[1] && spliter[1] !== '/') this.isModalOpen = true
+      document.body.style =
+        `background-image: url(${this.mang1[this.rand(this.mang1.length - 1)]});`
+      var lich = this._('right_bar')[0]
+
+      var _d = new Date()
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+      var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      lich.insertAdjacentHTML('beforeend', '<h2>' + days[_d.getDay()] + '</h2>')
+      lich.insertAdjacentHTML('beforeend', '<h2>' + _d.getDate() + '</h2>')
+      lich.insertAdjacentHTML('beforeend', '<h2>' + month[_d.getUTCMonth()] + '</h2>')
+      lich.insertAdjacentHTML('beforeend', '<h2>' + _d.getFullYear() + '</h2>')
+      //dong ho
+      var dh = this._('right_clock')[0]
+      setInterval(function () {
+        var str, h = _d.getHours(), m = _d.getMinutes(), s = _d.getSeconds()
+        h = h < 10 ? '0' + h : h
+        m = m < 10 ? '0' + m : m
+        s = s < 10 ? '0' + s : s
+        str = '<h2>' + h + ' : ' + m + '</h2>'
+        dh.innerHTML = str
+        // dh.insertAdjacentHTML('beforeend', str)
+      }, 1000)
     }
   }
 </script>

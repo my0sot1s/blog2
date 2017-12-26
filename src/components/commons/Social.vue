@@ -8,12 +8,12 @@
 </template>
 <script>
   export default{
-    data:function () {
+    data: function () {
       return {
-        messenger:`http://m.me/100002857163708`,
-        facebook:`http://fb.com/0.anhsang.0`,
-        github:`https://github.com/my0sot1s`,
-        twitter:`https://twitter.com/my0sot1ss`,
+        messenger: `http://m.me/100002857163708`,
+        facebook: `http://fb.com/0.anhsang.0`,
+        github: `https://github.com/my0sot1s`,
+        twitter: `https://twitter.com/my0sot1ss`,
       }
     }
   }

@@ -1,30 +1,38 @@
 <template>
   <nav class="main_nav">
     <ul>
-      <li><a href="#" id="home">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <span>Home</span>
-      </a></li>
       <li>
-        <router-link :to="{name:'about'}" id="about">
+        <router-link :to="{name:'Index.blank'}" id="home">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <span>Home</span>
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{name:'Index.about'}" id="about">
           <i class="fa fa-user" aria-hidden="true"></i>
-          <span>About me</span>
+          <span>About</span>
         </router-link>
       </li>
       <li>
-        <router-link :to="{name:'skills'}" id="skills">
+        <router-link :to="{name:'Index.skills'}" id="skills">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <span>My Skills</span>
+          <span>Skills</span>
         </router-link>
       </li>
       <li>
-        <router-link :to="{name:'blog'}" id="blog">
+        <router-link :to="{name:'Index.blog'}" id="blog">
           <i class="fa fa-bullhorn" aria-hidden="true"></i>
           <span>Blog</span>
         </router-link>
       </li>
       <li>
-        <router-link :to="{name:'contact'}" id="contact">
+        <router-link :to="{name:'Index.pin'}" id="pin">
+          <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+          <span>Pin</span>
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{name:'Index.contact'}" id="contact">
           <i class="fa fa-envelope" aria-hidden="true"></i>
           <span>Contact</span>
         </router-link>

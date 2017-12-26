@@ -43,12 +43,12 @@
         <!-- <img src="img/anh3.jpg" alt=""> -->
         <!-- <img src="img/anh2.jpg" alt=""> -->
         <div class="images">
-          <img class="image" src="img/b4.JPG">
-          <img class="image" src="img/b3.png">
-          <img class="image" src="img/b5.JPG">
-          <img class="image" src="img/b2.JPG">
-          <img class="image" src="img/b7.JPG">
-          <img class="image" src="img/anh3.jpg">
+          <img class="image" src="static/img/b4.JPG">
+          <img class="image" src="static/img/b3.png">
+          <img class="image" src="static/img/b5.JPG">
+          <img class="image" src="static/img/b2.JPG">
+          <img class="image" src="static/img/b7.JPG">
+          <img class="image" src="static/img/anh3.jpg">
         </div>
       </div>
     </div>
