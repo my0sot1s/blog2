@@ -188,7 +188,7 @@
   }
 
   .myDivHeader {
-    padding: 10px;
+    padding: 5px;
     cursor: move;
     z-index: 10;
     background-color: #2196F3;
