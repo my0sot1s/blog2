@@ -6,7 +6,8 @@ import Skills from '@/components/Skills'
 import Contact from '@/components/Contact'
 import Blog from '@/components/Blog'
 import Post from '@/components/Post'
-import Pin  from '@/components/Pin'
+import Pin from '@/components/Pin'
+import Upload from '@/components/Upload'
 Vue.use(Router)
 
 export default new Router({
@@ -72,6 +73,15 @@ export default new Router({
           meta: {
             effect: 'bounceIn',
             title: 'Pin | Te Nguyen'
+          }
+        },
+        {
+          path: '/upload',
+          name: 'Index.upload',
+          component: Upload,
+          meta: {
+            effect: 'animateleft',
+            title: 'Uploaded | Te Nguyen'
           }
         }
       ]

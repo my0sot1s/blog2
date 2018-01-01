@@ -27,7 +27,7 @@
     <div class="right_clock"></div>
     <social></social>
     <div class="bottom_bar">
-      CSS3,JS,HTML5-<24/12/2017>~  - wkr:kutekiu
+      CSS3,JS,HTML5-<24/12/2017>~  - wkr:te-nguyen
 
 
 

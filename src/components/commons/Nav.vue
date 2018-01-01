@@ -32,6 +32,12 @@
         </router-link>
       </li>
       <li>
+        <router-link :to="{name:'Index.upload'}" id="upload">
+          <i class="fa fa-upload" aria-hidden="true"></i>
+          <span>Upload</span>
+        </router-link>
+      </li>
+      <li>
         <router-link :to="{name:'Index.contact'}" id="contact">
           <i class="fa fa-envelope" aria-hidden="true"></i>
           <span>Contact</span>

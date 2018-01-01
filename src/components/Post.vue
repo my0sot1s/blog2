@@ -32,7 +32,7 @@
     },
     methods: {
       fetcher: function (id) {
-        axios.get(`https://kutekiu.herokuapp.com/api/Blog/getBlogById?id=${id}`)
+        axios.get(`https://te-nguyen.herokuapp.com/api/Blog/getBlogById?id=${id}`)
           .then(({data}) => {
             debugger
             this.data = data.data

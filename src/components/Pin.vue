@@ -80,7 +80,7 @@
       },
       saveNote: function () {
         if (this.title && this.content) {
-          axios.post(`https://kutekiu.herokuapp.com/api/Pin/createNewPin`,
+          axios.post(`https://te-nguyen.herokuapp.com/api/Pin/createNewPin`,
             `title=${encodeURIComponent(this.title)}&content=${encodeURIComponent(this.content)}`,
             {
               header: this.header
@@ -95,7 +95,7 @@
       popupDelete: function (id) {
         let conf = confirm(`Delete??`)
         if (conf) {
-          axios.delete(`https://kutekiu.herokuapp.com/api/Pin/deletePin`, {
+          axios.delete(`https://te-nguyen.herokuapp.com/api/Pin/deletePin`, {
             header: this.header,
             data: `id=${encodeURIComponent(id)}`
           })
@@ -110,7 +110,7 @@
       }
     },
     created: function () {
-      axios.get(`https://kutekiu.herokuapp.com/api/Pin/getPin`)
+      axios.get(`https://te-nguyen.herokuapp.com/api/Pin/getPin`)
         .then(({data}) => {
           this.data = data.data
         })

@@ -46,7 +46,7 @@
     methods: {
       fetcher: function (type) {
         if (type !== `append`) this.loader = true
-        axios.get(`https://kutekiu.herokuapp.com/api/Blog/getBlogInfo?limit=${this.limit}&page=${this.page}`)
+        axios.get(`https://te-nguyen.herokuapp.com/api/Blog/getBlogInfo?limit=${this.limit}&page=${this.page}`)
           .then(({data}) => {
             if (!data.data.length || data.data.length === 0) this.lock = true
             else {
