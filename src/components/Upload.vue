@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="upload_search">
-      <input type="text" placeholder="Search" id="txt_search">
+      <input type="text" placeholder="Search" id="txt_search" v-model="txtSearch">
     </div>
     <div class="upload_content">
       <div class="upload_content_item"
@@ -10,9 +10,14 @@
            @dragleave="isShowDragBox=false"
       >
         <div class="upload_blank" v-if="!isShowDragBox">
-          <input type="text" id="upload_with_url" placeholder="Add URL to upload ...">
+          <input type="text" id="upload_with_url"
+                 placeholder="Add URL to upload ..."
+                 @keyup.enter="submitLink"
+                 v-model="txtUrl">
           <i class="fa fa-upload" aria-hidden="true"></i>
-          <p>Total size < 5mb || `reject` bitch</p>
+          <p>1.Total size < 5mb || `reject` bitch</p>
+          <p>2. Can upload with link || `reject` idiot</p>
+          <p>3.Can upload single short video size < 7mb</p>
         </div>
         <div class="upload_blank2" v-else>
           <p>Just Drop here!! `stupid`</p>
@@ -23,11 +28,30 @@
            v-for="(img,index) in listImage"
            :key="index">
         <img
+          v-if="/(jpg)|(jpge)|(gif)|(bmp)|(png)/.test(img.format)"
           :src="img.url"
           alt="">
-        <a :href="img.url" target="_blank" style="text-decoration: underline;">
-          <p style="text-align: center">{{/.*\/(.*\.jpg)|(.*\.png)|(.*\.jpeg)|(.*\.bmp)$/.exec(img.url)[1] || `undefined`}}</p></a>
+        <video width="320" height="240" controls v-else-if="/(mp4)|(mp3)|(3gp)|(ogg)/.test(img.format)">
+          <source :src="img.url" :type="`video/${img.format}`">
+          Your browser does not support the video tag.
+
+
+
+
+
+
+        </video>
+        <p v-else>t chua check cai nay</p>
+        <a :href="img.url" target="_blank" style="text-decoration: underline;"
+           v-if="/(jpg)|(jpge)|(gif)|(bmp)|(png)/.test(img.format)">
+          <p style="text-align: center">
+            {{/.*\/(.*\.jpg)|(.*\.png)|(.*\.jpeg)|(.*\.bmp)$/.exec(img.url)[1] || `undefined`}}</p></a>
+        <a :href="img.url" target="_blank" style="text-decoration: underline;"
+           v-if="/(mp4)|(mp3)|(3gp)|(ogg)/.test(img.format)">
+          <p style="text-align: center">{{/.*\/(.*\.mp4)|(.*\.mp3)|(.*\.ogg)|(.*\.3gp)$/.exec(img.url)[1] || `undefined`}}</p>
+        </a>
       </div>
+
     </div>
   </div>
 </template>
@@ -43,13 +67,14 @@
         limit: 3,
         page: 1,
         loader: false,
+        txtUrl: null,
+        txtSearch: null,
         lock: false
       }
     },
     methods: {
       fetcher: async function (type) {
         if (type !== `append`) this.loader = true
-        debugger
         var images = await axios.get(`https://te-nguyen.herokuapp.com/api/storage/getAll?limit=${this.limit}&page=${this.page}`)
         if (!images.data.data.length || images.data.data.length === 0) this.lock = true
         else {
@@ -70,6 +95,25 @@
         e.preventDefault()
         var files = e.dataTransfer.files
         this.checkFile(files)
+      },
+      submitLink: function () {
+        if (this.txtUrl && /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/.test(this.txtUrl)) {
+          axios.post(`https://te-nguyen.herokuapp.com/api/storage/uploadWithUrl`, `url=${encodeURIComponent(this.txtUrl)}`, {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }).then(({data}) => {
+            this.listImage.unshift(...data.data.media)
+            this.isShowDragBox = false
+            this.txtUrl = null
+          }).catch(err => {
+            debugger
+            console.log(err)
+          })
+        } else {
+          alert(`invalid data!`)
+        }
       },
       checkFile: function (files) {
         var form = new FormData()
@@ -176,7 +220,7 @@
     box-shadow: 1px 3px 2px #a3a3a3;
   }
 
-  .upload_content_item img:hover {
+  p:hover {
     border-radius: 1px;
     box-shadow: 2px 4px 2px #a3a3a3;
   }
