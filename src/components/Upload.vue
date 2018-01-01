@@ -207,7 +207,7 @@
   }
 
   .upload_content_item {
-    flex-basis: 32.5%;
+    flex-basis: 33%;
     padding: 5px 10px;
     height: 20%;
     /*padding: 2px;*/
