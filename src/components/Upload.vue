@@ -5,7 +5,7 @@
     </div>
     <div class="upload_content">
       <div class="upload_content_item"
-           @dragover.prevent ="isShowDragBox=true"
+           @dragover.prevent="isShowDragBox=true"
            @drop="onDrop"
            @dragleave="isShowDragBox=false"
       >
@@ -25,6 +25,8 @@
         <img
           :src="img.url"
           alt="">
+        <a :href="img.url" target="_blank" style="text-decoration: underline;">
+          <p style="text-align: center">{{/.*\/(.*\.jpg)|(.*\.png)|(.*\.jpeg)|(.*\.bmp)$/.exec(img.url)[1] || `undefined`}}</p></a>
       </div>
     </div>
   </div>
@@ -38,18 +40,30 @@
         isShowDragBox: false,
         isUploading: false,
         listImage: [],
-        limit: 8,
-        page: 1
+        limit: 3,
+        page: 1,
+        loader: false,
+        lock: false
       }
     },
-    created: async function () {
-      var images = await axios.get(`https://te-nguyen.herokuapp.com/api/storage/getAll?limit=${this.limit}&page=${this.page}`)
-      images.data.data.map(val => {
-        this.listImage.push(...val.media)
-        this.limit = 6
-      })
-    },
     methods: {
+      fetcher: async function (type) {
+        if (type !== `append`) this.loader = true
+        debugger
+        var images = await axios.get(`https://te-nguyen.herokuapp.com/api/storage/getAll?limit=${this.limit}&page=${this.page}`)
+        if (!images.data.data.length || images.data.data.length === 0) this.lock = true
+        else {
+          if (type === `append`) {
+            images.data.data.map(val => {
+              this.listImage.push(...val.media)
+            })
+          } else
+            images.data.data.map(val => {
+              this.listImage.push(...val.media)
+            })
+          this.loader = false
+        }
+      },
       onDrop: function (e) {
         this.isShowDragBox = true
         e.stopPropagation()
@@ -75,6 +89,21 @@
           this.listImage.unshift(...data.data.media)
           this.isShowDragBox = false
         })
+      }
+    },
+    mounted: function () {
+      this.fetcher()
+      var element = document.getElementById('main_body')
+      element.onscroll = () => {
+        var a = element.scrollTop, b = element.scrollHeight - element.clientHeight
+        var str = window.location.href
+        var spliter = str.split('#')
+        if (spliter.length === 2 && spliter[1] === '/upload') {
+          if (a / b > 0.75 && !this.lock) {
+            this.page++
+            this.fetcher(`append`)
+          }
+        }
       }
     }
   }

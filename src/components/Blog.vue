@@ -11,6 +11,7 @@
 
 
 
+
     </div>
     <div class="blog_container">
       <div class="block_main blog_main_bar" v-for="(item,key) in data"
@@ -21,6 +22,7 @@
         <router-link :to="{name:'Index.post',query:{id:item.id}}"
                      class="blog_readMore">
           Read more
+
 
 
 
@@ -65,7 +67,7 @@
     mounted: function () {
       this.fetcher()
       var element = document.getElementById('main_body')
-      element.onscroll = (function () {
+      element.onscroll = () => {
         var a = element.scrollTop, b = element.scrollHeight - element.clientHeight
         var str = window.location.href
         var spliter = str.split('#')
@@ -75,7 +77,7 @@
             this.fetcher(`append`)
           }
         }
-      }).bind(this)
+      }
     }
   }
 </script>
