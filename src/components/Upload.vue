@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <loader v-if="loader" style="display: block;"></loader>
+  <div v-else>
     <div class="upload_search">
       <input type="text" placeholder="Search" id="txt_search" v-model="txtSearch">
     </div>
@@ -40,6 +41,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </video>
         <p v-else>t chua check cai nay</p>
         <a :href="img.url" target="_blank" style="text-decoration: underline;"
@@ -58,6 +78,7 @@
 
 <script>
   import axios from 'axios'
+  import Loader from './commons/Loader.vue'
   export default{
     data: function () {
       return {
@@ -66,12 +87,13 @@
         listImage: [],
         limit: 3,
         page: 1,
-        loader: false,
+        loader: true,
         txtUrl: null,
         txtSearch: null,
         lock: false
       }
     },
+    components: {Loader},
     methods: {
       fetcher: async function (type) {
         if (type !== `append`) this.loader = true
@@ -82,11 +104,12 @@
             images.data.data.map(val => {
               this.listImage.push(...val.media)
             })
-          } else
+          } else {
             images.data.data.map(val => {
               this.listImage.push(...val.media)
             })
-          this.loader = false
+            this.loader = false
+          }
         }
       },
       onDrop: function (e) {
@@ -117,22 +140,68 @@
       },
       checkFile: function (files) {
         var form = new FormData()
+        var form2 = new FormData()
+        var videos = 0, images = 0, arrProcess = []
         this.isUploading = true
         // fake uplload
         Array.from(files).forEach(file => {
-          if (/\.(jpe?g|png|gif|bmp)$/i.test(file.name))
+          if (/\.(jpe?g|png|gif|bmp)$/i.test(file.name)) {
             form.append('file', file, file.name)
-        })
-        axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload`, form, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+            images++
+          } else if (/\.(mp3|mp4|ogg|3gp)$/i.test(file.name)) {
+            form2.append('file', file, file.name)
+            videos++
           }
-        }).then(({data}) => {
-          this.listImage.unshift(...data.data.media)
+        })
+        if (images > 0) arrProcess.push(
+          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload`, form, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Accept': 'application/json',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+            }
+          }))
+        if (videos > 0) arrProcess.push(
+          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload-video`, form2, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Accept': 'application/json',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+            }
+          })
+        )
+        Promise.all(arrProcess).then(arrRes => {
+          for (var item of arrRes) {
+            this.listImage.unshift(...item.data.data.media)
+          }
+        }).then(() => {
           this.isShowDragBox = false
         })
+//        if (images > 0) {
+//          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload`, form, {
+//            headers: {
+//              'Access-Control-Allow-Origin': '*',
+//              'Accept': 'application/json',
+//              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+//            }
+//          }).then(({data}) => {
+//            this.listImage.unshift(...data.data.media)
+//            this.isShowDragBox = false
+//          })
+//        }
+//        if (videos.length > 0) {
+//          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload-video`, form2, {
+//            headers: {
+//              'Access-Control-Allow-Origin': '*',
+//              'Accept': 'application/json',
+//              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+//            }
+//          }).then(({data}) => {
+//            this.listImage.unshift(...data.data.media)
+//            this.isShowDragBox = false
+//          })
+//        }
+//        this.isShowDragBox = false
       }
     },
     mounted: function () {
