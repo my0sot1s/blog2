@@ -8,6 +8,7 @@ import Blog from '@/components/Blog'
 import Post from '@/components/Post'
 import Pin from '@/components/Pin'
 import Upload from '@/components/Upload'
+import InputForm from '@/components/InputForm'
 Vue.use(Router)
 
 export default new Router({
@@ -73,6 +74,15 @@ export default new Router({
           meta: {
             effect: 'bounceIn',
             title: 'Pin | Te Nguyen'
+          }
+        },
+        {
+          path: '/input',
+          name: 'Index.input',
+          component: InputForm,
+          meta: {
+            effect: 'animateleft',
+            title: 'Input | Te Nguyen'
           }
         },
         {

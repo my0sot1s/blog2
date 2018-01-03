@@ -35,6 +35,12 @@
         </router-link>
       </li>
       <li @click="isShowMenu=false">
+        <router-link :to="{name:'Index.input'}" id="input">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+          <span>Input</span>
+        </router-link>
+      </li>
+      <li @click="isShowMenu=false">
         <router-link :to="{name:'Index.upload'}" id="upload">
           <i class="fa fa-upload" aria-hidden="true"></i>
           <span>Upload</span>

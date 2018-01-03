@@ -177,31 +177,6 @@
         }).then(() => {
           this.isShowDragBox = false
         })
-//        if (images > 0) {
-//          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload`, form, {
-//            headers: {
-//              'Access-Control-Allow-Origin': '*',
-//              'Accept': 'application/json',
-//              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-//            }
-//          }).then(({data}) => {
-//            this.listImage.unshift(...data.data.media)
-//            this.isShowDragBox = false
-//          })
-//        }
-//        if (videos.length > 0) {
-//          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload-video`, form2, {
-//            headers: {
-//              'Access-Control-Allow-Origin': '*',
-//              'Accept': 'application/json',
-//              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-//            }
-//          }).then(({data}) => {
-//            this.listImage.unshift(...data.data.media)
-//            this.isShowDragBox = false
-//          })
-//        }
-//        this.isShowDragBox = false
       }
     },
     mounted: function () {
