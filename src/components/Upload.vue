@@ -1,6 +1,8 @@
 <template>
   <loader v-if="loader" style="display: block;"></loader>
   <div v-else>
+    <h2 style="margin-left: 40%">Storage can save 300.000 images and 2 000 videos</h2>
+    <h5 style="margin-left: 40%">anyone allow auload</h5>
     <div class="upload_search">
       <input type="text" placeholder="Search" id="txt_search" v-model="txtSearch">
     </div>
@@ -264,9 +266,11 @@
     box-shadow: 1px 3px 2px #a3a3a3;
   }
 
-  p:hover {
+  .upload_content_item:hover {
     border-radius: 1px;
-    box-shadow: 2px 4px 2px #a3a3a3;
+    box-shadow: 1px 2px 1px #a3a3a3;
   }
-
+  .upload_content_item video{
+    width: 100%;
+  }
 </style>
