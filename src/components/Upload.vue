@@ -62,6 +62,10 @@
 
 
 
+
+
+
+
         </video>
         <p v-else>t chua check cai nay</p>
         <a :href="img.url" target="_blank" style="text-decoration: underline;"
@@ -75,6 +79,7 @@
       </div>
 
     </div>
+
   </div>
 </template>
 
@@ -87,6 +92,7 @@
         isShowDragBox: false,
         isUploading: false,
         listImage: [],
+        loadding: false,
         limit: 3,
         page: 1,
         loader: true,
@@ -99,6 +105,7 @@
     methods: {
       fetcher: async function (type) {
         if (type !== `append`) this.loader = true
+        else this.loadding = true
         var images = await axios.get(`https://te-nguyen.herokuapp.com/api/storage/getAll?limit=${this.limit}&page=${this.page}`)
         if (!images.data.data.length || images.data.data.length === 0) this.lock = true
         else {
@@ -106,6 +113,7 @@
             images.data.data.map(val => {
               this.listImage.push(...val.media)
             })
+            this.loadding = false
           } else {
             images.data.data.map(val => {
               this.listImage.push(...val.media)
@@ -163,15 +171,17 @@
               'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
           }))
-        if (videos > 0) arrProcess.push(
-          axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload-video`, form2, {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Accept': 'application/json',
-              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-            }
-          })
-        )
+        if (videos > 0) {
+            arrProcess.push(
+              axios.post(`https://te-nguyen.herokuapp.com/api/storage/upload-video`, form2, {
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Accept': 'application/json',
+                  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                }
+              })
+          )
+        }
         Promise.all(arrProcess).then(arrRes => {
           for (var item of arrRes) {
             this.listImage.unshift(...item.data.data.media)
@@ -183,11 +193,12 @@
     },
     mounted: function () {
       this.fetcher()
-      var element = document.getElementById('main_body')
+      let element = document.getElementById('main_body')
       element.onscroll = () => {
-        var a = element.scrollTop, b = element.scrollHeight - element.clientHeight
-        var str = window.location.href
-        var spliter = str.split('#')
+        let a = element.scrollTop
+        let b = element.scrollHeight - element.clientHeight
+        let str = window.location.href
+        let spliter = str.split('#')
         if (spliter.length === 2 && spliter[1] === '/upload') {
           if (a / b > 0.75 && !this.lock) {
             this.page++
@@ -270,7 +281,8 @@
     border-radius: 1px;
     box-shadow: 1px 2px 1px #a3a3a3;
   }
-  .upload_content_item video{
+
+  .upload_content_item video {
     width: 100%;
   }
 </style>
