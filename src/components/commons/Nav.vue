@@ -34,12 +34,12 @@
           <span>Pin</span>
         </router-link>
       </li>
-      <li @click="clickNav">
+      <!-- <li @click="clickNav">
         <router-link :to="{name:'Index.input'}" id="input">
           <i class="fa fa-pencil" aria-hidden="true"></i>
           <span>Input</span>
         </router-link>
-      </li>
+      </li> -->
       <li @click="clickNav">
         <router-link :to="{name:'Index.upload'}" id="upload">
           <i class="fa fa-upload" aria-hidden="true"></i>

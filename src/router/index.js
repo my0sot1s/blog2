@@ -76,15 +76,15 @@ export default new Router({
             title: 'Pin | Te Nguyen'
           }
         },
-        {
-          path: '/input',
-          name: 'Index.input',
-          component: InputForm,
-          meta: {
-            effect: 'animateleft',
-            title: 'Input | Te Nguyen'
-          }
-        },
+        // {
+        //   path: '/input',
+        //   name: 'Index.input',
+        //   component: InputForm,
+        //   meta: {
+        //     effect: 'animateleft',
+        //     title: 'Input | Te Nguyen'
+        //   }
+        // },
         {
           path: '/upload',
           name: 'Index.upload',

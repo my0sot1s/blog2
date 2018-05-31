@@ -10,10 +10,11 @@
       <div class="cv_name">
         <div>Nguyễn Mạnh Tể</div>
       </div>
-      <h4>Junior developer and full stack</h4>
+      <h4>Developer full stack</h4>
       <p class="introduce">
-        Tôi không sợ người luyện tập 10.000 cú đá chỉ một lần<br>Mà chỉ sợ người thực hành 1 cú đá 10.000 lần.
-        <br> Nếu cho tôi 6 giờ để chặt một cái cây, <br> tôi sẽ dành 4 tiếng để mài rìu
+        Sự tử tế không nằm trong lời nói, mà nằm ở suy nghỉ và hành động<br>
+        Suy nghĩ thì bạn không thể thấy 
+        <br>Nên hãy hành động
         <!-- <p>Lý Tiểu Long</p> -->
       </p>
 
