@@ -10,12 +10,15 @@
       <tr>
         <td>
           Mình có sở thích là thiết kế website. Mình chủ yếu tự học và tham khảo các nguồn trên web để tự trang bị kiến thức cho mình.
-          &#9829 Cho nên là còn nhiều thiếu sót ha. Mình thích NodeJs và React-Native nói chung là Js ahihi. Mình đã thực tập
-          và có được chút kinh nghiệm và đây là CV của mình. Còn nhiều thiếu sót mình sẽ update trong blog hihi . Dự định sau
-          khi ra trường sẽ cố gắng chen chân trong ngành. Ngoài ra mình có thể làm các app với React-Native.
-          Có khả năng làm việc với VueJS và golang. Kỹ năng còn khiêm
-          tốn mong mọi người chỉ bảo thêm ạ. &#9829 &#9829</td>
+          &#9829 Cho nên là còn nhiều thiếu sót ha. Mình ghét JAVa và  Golang, NodeJs là sở trường của mình. Mình đã thực tập
+          và có được chút kinh nghiệm và đây là CV của mình. <br/>
+          Với mình mọi thứ không phải quan trọng ở bạn thực hiện nó như thế nào mà là cách bạn nghĩ về nó.
+          Còn nhiều thiếu sót mình sẽ update trong blog hihi  .&#9829 &#9829</td>
         <td>
+        GOLANG
+          <div class="progress">
+          <div class="bar" id="node"></div>
+        </div>
           HTML5
           <div class="progress">
           <div class="bar" id="html5"></div>
@@ -60,7 +63,6 @@
           <i class="fa fa-microchip" aria-hidden="true"></i> APPLICATION DESKTOP
         <p>Xây dựng các ứng dụng C# or Qt C++ hay ứng dụng Electron dễ dàng nhanh chóng</p>
         </td>
-
       </tr>
     </table>
 
@@ -87,6 +89,3 @@
     <!-- <hr> -->
   </div>
 </template>
-<script>
-  export default {}
-</script>

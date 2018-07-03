@@ -12,15 +12,15 @@
       </div>
       <h4>Developer full stack</h4>
       <p class="introduce">
-        Sự tử tế không nằm trong lời nói, mà nằm ở suy nghỉ và hành động<br>
-        Suy nghĩ thì bạn không thể thấy 
-        <br>Nên hãy hành động
+        Kinh nghiệm không phải là những điều đã xảy đến với chúng ta,<br>
+        Mà là cách chúng ta ứng phó khi những điều ấy xảy đến.
+        <br>
         <!-- <p>Lý Tiểu Long</p> -->
       </p>
 
       <ul class="phim_nhan">
         <li><a href="http://fb.com/0.anhsang.0" class="hire">Hire me</a></li>
-        <li><a href="https://drive.google.com/open?id=0BxNx6QRuIMWaNFgwS0g1Mk1HVjg" target="_blank"
+        <li><a href="https://docs.google.com/document/d/1pdWYFXKTvo3t52z5etbAqL198vIkjeRlHZ4GMgXKWvA/edit?usp=sharing" target="_blank"
                class="hire">DOC CV</a></li>
       </ul>
     </section>
@@ -28,7 +28,7 @@
     <div class="right_clock"></div>
     <social></social>
     <div class="bottom_bar">
-      CSS3,JS,HTML5-<24/12/2017>~  - wkr:te-nguyen
+      CSS3,JS,HTML5-<24/12/2017 || 03/07/2018>~  - wkr:te-nguyen
 
 
 
