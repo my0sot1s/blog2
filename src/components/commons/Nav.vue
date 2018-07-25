@@ -1,36 +1,33 @@
 <template>
   <nav class="main_nav" v-if="isShowMenu">
     <ul>
-      <li id="menu_ava" @click="clickNav">
-        <img src="http://res.cloudinary.com/dux5eshko/image/upload/v1514773331/common/muox9hwdcksr1kpfs1qj.jpg" alt="">
-      </li>
       <li>
         <router-link :to="{name:'Index.blank'}" id="home">
-          <i class="fa fa-home" aria-hidden="true"></i>
+          <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
           <span>Home</span>
         </router-link>
       </li>
       <li @click="clickNav">
         <router-link :to="{name:'Index.about'}" id="about">
-          <i class="fa fa-user" aria-hidden="true"></i>
+          <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
           <span>About</span>
         </router-link>
       </li>
       <li @click="clickNav">
         <router-link :to="{name:'Index.skills'}" id="skills">
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          <!-- <i class="fa fa-graduation-cap" aria-hidden="true"></i> -->
           <span>Skills</span>
         </router-link>
       </li>
       <li @click="clickNav">
         <router-link :to="{name:'Index.blog'}" id="blog">
-          <i class="fa fa-bullhorn" aria-hidden="true"></i>
+          <!-- <i class="fa fa-bullhorn" aria-hidden="true"></i> -->
           <span>Blog</span>
         </router-link>
       </li>
       <li @click="clickNav">
         <router-link :to="{name:'Index.pin'}" id="pin">
-          <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+          <!-- <i class="fa fa-thumb-tack" aria-hidden="true"></i> -->
           <span>Pin</span>
         </router-link>
       </li>
@@ -42,13 +39,13 @@
       </li> -->
       <li @click="clickNav">
         <router-link :to="{name:'Index.upload'}" id="upload">
-          <i class="fa fa-upload" aria-hidden="true"></i>
+          <!-- <i class="fa fa-upload" aria-hidden="true"></i> -->
           <span>Upload</span>
         </router-link>
       </li>
       <li @click="clickNav">
         <router-link :to="{name:'Index.contact'}" id="contact">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
           <span>Contact</span>
         </router-link>
       </li>
